@@ -13,9 +13,10 @@ jobPath="${url}/${job}"
 
 if [ -n "${parameters}" ]
 then
-    if [ "${parameters}" == "BRANCH" ]
+    if [[ "${parameters}" == *"BRANCH"* ]]
     then
-        parameters="BRANCH=${GITHUB_HEAD_REF}"
+        branch="BRANCH=${GITHUB_HEAD_REF}"
+        parameters=${parameters/BRANCH/${branch}}
     fi
 
     if [[ "${job}" == *"buildWithParameters"* ]];
